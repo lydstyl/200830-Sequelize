@@ -13,9 +13,17 @@ db.authenticate()
 
 const app = express()
 
+// Index route
 app.get('/', (req, res) => {
-  return res.send('INDEX')
+  return res.render('index', { layout: 'landing' })
 })
+
+// Handlebars
+app.engine('handlebars', exphdbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Gig routes
 app.use('/gigs', require('./routes/gigs'))
