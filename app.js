@@ -22,6 +22,9 @@ app.get('/', (req, res) => {
 app.engine('handlebars', exphdbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }))
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
